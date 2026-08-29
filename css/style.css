@@ -270,7 +270,7 @@ html, body{
   font-size: 2.4rem; margin: 6px 0 10px; color: var(--ink); line-height:1.05;
 }
 .entry-body{
-  font-family:'Merienda', cursive; font-size:1.45rem; line-height:1.5;
+  font-family:'Merienda', cursive; font-size:0.725rem; line-height:1.5;
   color: var(--ink); flex:1; overflow-y:auto; padding-right:6px;
 }
 .entry-body h3{ font-family:'IM Fell English SC', serif; font-size:1.2rem; color: var(--rust); }
@@ -308,7 +308,7 @@ html, body{
 .toolbar button:hover{ background: rgba(60,38,20,0.2); }
 .edit-body{
   flex:1; min-height: 220px;
-  font-family:'Merienda', cursive; font-size:1.45rem; line-height:1.5;
+  font-family:'Merienda', cursive; font-size:0.725rem; line-height:1.5;
   background: rgba(255,250,235,0.3);
   border: 1px solid var(--parchment-stain);
   border-radius: 3px;
