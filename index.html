@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Fallen Journal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=IM+Fell+English:ital@0;1&family=Caveat:wght@400;600&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="deskLight"></div>
+
+<!-- COVER SCREEN -->
+<section id="cover" class="screen">
+  <div class="cover-book">
+    <h1 class="cover-title">A Fallen Journal</h1>
+    <p class="cover-sub">being a true &amp; private account of one's affairs<br>in the Neath, and elsewhere</p>
+    <div class="wax-seal" id="openBtn" title="Open the journal">
+      <span>OPEN</span>
+    </div>
+    <button id="settingsBtnCover" class="link-btn">⚙ connect to your archive</button>
+  </div>
+</section>
+
+<!-- SETTINGS / CONNECT SCREEN -->
+<section id="settings" class="screen hidden">
+  <div class="page">
+    <h2>The Locked Drawer</h2>
+    <p class="flavor">Your journal's pages are kept safe in a strongbox on GitHub, not in this browser alone. Furnish the following particulars once, and it shall remember them here henceforth.</p>
+
+    <label>Repository owner (your GitHub username)
+      <input type="text" id="cfgOwner" placeholder="e.g. mr-eaten">
+    </label>
+    <label>Repository name
+      <input type="text" id="cfgRepo" placeholder="e.g. fallen-london-journal">
+    </label>
+    <label>Branch
+      <input type="text" id="cfgBranch" placeholder="main" value="main">
+    </label>
+    <label>Personal access token
+      <input type="password" id="cfgToken" placeholder="ghp_... or github_pat_...">
+    </label>
+
+    <div class="settings-actions">
+      <button id="cfgSave" class="ink-btn">Seal the pact</button>
+      <button id="cfgCancel" class="link-btn">back</button>
+    </div>
+    <p id="cfgStatus" class="flavor status"></p>
+
+    <details class="howto">
+      <summary>How do I get a token? (once-only ritual)</summary>
+      <ol>
+        <li>Create a new GitHub repository (public or private, either works) — this is where your entries will live, and where this site will be hosted.</li>
+        <li>Upload these journal files to it, then in the repo's <em>Settings → Pages</em>, set the source to your main branch so the journal is reachable by web address.</li>
+        <li>Go to GitHub → your photo → <em>Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token</em>.</li>
+        <li>Give it a name, set <em>Repository access</em> to "Only select repositories" and choose this repo.</li>
+        <li>Under <em>Permissions → Repository permissions</em>, set <strong>Contents</strong> to <strong>Read and write</strong>. Leave everything else as-is.</li>
+        <li>Generate it, copy the token, and paste it above. It is stored only in this browser's local storage — never committed anywhere.</li>
+      </ol>
+    </details>
+  </div>
+</section>
+
+<!-- MAIN JOURNAL -->
+<section id="journal" class="screen hidden">
+  <div class="journal-body">
+
+    <!-- Left page: table of contents / search -->
+    <div class="page left-page">
+      <div class="page-header">
+        <h2>Table of Contents</h2>
+        <button id="settingsBtnJournal" class="quill-btn" title="settings">⚙</button>
+      </div>
+
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="search by title, date, or word...">
+        <select id="folderFilter">
+          <option value="">all folders</option>
+        </select>
+      </div>
+
+      <div id="entryList" class="entry-list"></div>
+
+      <button id="newEntryBtn" class="ink-btn new-entry-btn">+ new entry</button>
+    </div>
+
+    <!-- Spine -->
+    <div class="spine"></div>
+
+    <!-- Right page: reading / editing -->
+    <div class="page right-page" id="rightPage">
+      <div id="emptyState" class="empty-state">
+        <p>Select an entry from the contents, or begin a new page.</p>
+      </div>
+
+      <div id="entryView" class="entry-view hidden">
+        <div class="entry-view-header">
+          <span id="viewDate" class="entry-date"></span>
+          <span id="viewFolder" class="entry-folder-tag"></span>
+        </div>
+        <h2 id="viewTitle" class="entry-title"></h2>
+        <div id="viewBody" class="entry-body"></div>
+        <div class="entry-actions">
+          <button id="editBtn" class="quill-btn">✒ edit</button>
+          <button id="deleteBtn" class="quill-btn danger">🗑 tear out</button>
+        </div>
+      </div>
+
+      <div id="entryEditor" class="entry-editor hidden">
+        <input type="date" id="editDate" class="edit-date">
+        <input type="text" id="editFolder" class="edit-folder" placeholder="folder (optional, e.g. Ambition, Zee-Voyages)" list="folderOptions">
+        <datalist id="folderOptions"></datalist>
+        <input type="text" id="editTitle" class="edit-title" placeholder="Title this page...">
+
+        <div class="toolbar">
+          <button type="button" data-cmd="bold" title="bold"><b>B</b></button>
+          <button type="button" data-cmd="italic" title="italic"><i>I</i></button>
+          <button type="button" data-cmd="underline" title="underline"><u>U</u></button>
+          <button type="button" data-cmd="insertUnorderedList" title="bullet list">• list</button>
+          <button type="button" data-cmd="insertOrderedList" title="numbered list">1. list</button>
+          <button type="button" data-cmd="formatBlock" data-value="h3" title="heading">H</button>
+          <button type="button" data-cmd="formatBlock" data-value="blockquote" title="quote">"</button>
+          <button type="button" data-cmd="formatBlock" data-value="p" title="clear format">¶</button>
+        </div>
+        <div id="editBody" class="edit-body" contenteditable="true"></div>
+
+        <div class="entry-actions">
+          <button id="saveEntryBtn" class="ink-btn">save to the archive</button>
+          <button id="cancelEditBtn" class="link-btn">discard</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flip-overlay" id="flipOverlay"></div>
+  <div id="syncStatus" class="sync-status"></div>
+</section>
+
+<script src="js/github.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
