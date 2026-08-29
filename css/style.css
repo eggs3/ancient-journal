@@ -59,6 +59,22 @@ html, body{
   border-radius: 3px;
 }
 
+/* subtly torn / deckled paper edges (each face gets its own irregular
+   clip-path; the two facing pages stay straight along the spine so
+   they still read as one open book) */
+.cover-book{
+  clip-path: polygon(0.0% 0%, 7.69% 1.1%, 15.38% 0.43%, 23.08% 0%, 30.77% 0.5%, 38.46% 1.22%, 46.15% 0%, 53.85% 1.73%, 61.54% 0%, 69.23% 0.36%, 76.92% 0%, 84.62% 0%, 92.31% 2.07%, 100.0% 0.43%, 100% 7.69%, 99.7% 15.38%, 100% 23.08%, 100% 30.77%, 100% 38.46%, 100% 46.15%, 99.29% 53.85%, 100% 61.54%, 100% 69.23%, 100% 76.92%, 100% 84.62%, 100% 92.31%, 100% 100.0%, 92.31% 100%, 84.62% 98.9%, 76.92% 99.02%, 69.23% 100%, 61.54% 99.01%, 53.85% 98.22%, 46.15% 98.76%, 38.46% 98.98%, 30.77% 100%, 23.08% 99.76%, 15.38% 100%, 7.69% 100%, 0.0% 100%, 0% 92.31%, 0.56% 84.62%, 0% 76.92%, 2.53% 69.23%, 0.99% 61.54%, 0.38% 53.85%, 0.21% 46.15%, 0% 38.46%, 0.33% 30.77%, 0% 23.08%, 0% 15.38%, 0.44% 7.69%, 0.63% 0.0%);
+}
+.left-page{
+  clip-path: polygon(0.0% 0%, 7.69% 0%, 15.38% 0.5%, 23.08% 0.66%, 30.77% 0.95%, 38.46% 0%, 46.15% 0%, 53.85% 0%, 61.54% 0%, 69.23% 0%, 76.92% 0%, 84.62% 0.43%, 92.31% 0.48%, 100.0% 0.92%, 100% 7.69%, 100% 15.38%, 100% 23.08%, 100% 30.77%, 100% 38.46%, 100% 46.15%, 100% 53.85%, 100% 61.54%, 100% 69.23%, 100% 76.92%, 100% 84.62%, 100% 92.31%, 100% 100.0%, 92.31% 99.25%, 84.62% 100%, 76.92% 100%, 69.23% 100%, 61.54% 98.95%, 53.85% 99.01%, 46.15% 100%, 38.46% 99.38%, 30.77% 99.23%, 23.08% 99.48%, 15.38% 100%, 7.69% 99.17%, 0.0% 100%, 0% 92.31%, 0% 84.62%, 0% 76.92%, 0% 69.23%, 1.12% 61.54%, 0.94% 53.85%, 0% 46.15%, 0% 38.46%, 0% 30.77%, 0% 23.08%, 0.8% 15.38%, 0% 7.69%, 0.6% 0.0%);
+}
+.right-page{
+  clip-path: polygon(0.0% 0.78%, 7.69% 0%, 15.38% 0.44%, 23.08% 1.22%, 30.77% 1.2%, 38.46% 0%, 46.15% 1.17%, 53.85% 0%, 61.54% 0.93%, 69.23% 2.03%, 76.92% 1.21%, 84.62% 0.62%, 92.31% 1.18%, 100.0% 0%, 99.93% 7.69%, 98.8% 15.38%, 100% 23.08%, 99.58% 30.77%, 98.99% 38.46%, 98.77% 46.15%, 99.03% 53.85%, 100% 61.54%, 100% 69.23%, 99.68% 76.92%, 99.45% 84.62%, 100% 92.31%, 100% 100.0%, 92.31% 100%, 84.62% 99.37%, 76.92% 99.74%, 69.23% 100%, 61.54% 99.37%, 53.85% 100%, 46.15% 99.02%, 38.46% 99.98%, 30.77% 100%, 23.08% 99.43%, 15.38% 99.3%, 7.69% 99.11%, 0.0% 100%, 0% 92.31%, 0% 84.62%, 0% 76.92%, 0% 69.23%, 0% 61.54%, 0% 53.85%, 0% 46.15%, 0% 38.46%, 0% 30.77%, 0% 23.08%, 0% 15.38%, 0% 7.69%, 0% 0.0%);
+}
+#settings .page{
+  clip-path: polygon(0.0% 0.16%, 7.69% 0%, 15.38% 0.23%, 23.08% 0.03%, 30.77% 0.76%, 38.46% 0%, 46.15% 1.98%, 53.85% 0%, 61.54% 1.21%, 69.23% 0.3%, 76.92% 0%, 84.62% 0%, 92.31% 0%, 100.0% 0%, 100% 7.69%, 100% 15.38%, 99.42% 23.08%, 100% 30.77%, 100% 38.46%, 99.3% 46.15%, 98.88% 53.85%, 99.74% 61.54%, 99.7% 69.23%, 100% 76.92%, 98.14% 84.62%, 99.92% 92.31%, 99.73% 100.0%, 92.31% 99.4%, 84.62% 98.93%, 76.92% 100%, 69.23% 98.38%, 61.54% 97.18%, 53.85% 99.16%, 46.15% 99.86%, 38.46% 100%, 30.77% 100%, 23.08% 99.49%, 15.38% 99.4%, 7.69% 100%, 0.0% 100%, 0.37% 92.31%, 3.13% 84.62%, 0% 76.92%, 0% 69.23%, 0% 61.54%, 0.53% 53.85%, 0.26% 46.15%, 0% 38.46%, 0% 30.77%, 0.95% 23.08%, 0% 15.38%, 0.83% 7.69%, 0% 0.0%);
+}
+
 .page::before{
   content:"";
   position:absolute; inset:0;
@@ -179,7 +195,7 @@ html, body{
 }
 .left-page, .right-page{
   flex:1 1 50%;
-  padding: 26px 30px 30px;
+  padding: 32px 36px 34px;
   min-width:0;
   display:flex;
   flex-direction:column;
@@ -221,7 +237,13 @@ html, body{
   font-size:0.8rem; color: var(--rust); letter-spacing:0.5px;
 }
 .entry-item .ei-title{
-  font-family:'Caveat', cursive; font-size:1.35rem; color: var(--ink); line-height:1.1;
+  font-family:'Merienda', cursive; font-size:1.35rem; color: var(--ink); line-height:1.1;
+}
+.entry-item .ei-preview{
+  font-family:'IM Fell English', serif; font-style:italic;
+  font-size:0.85rem; color: var(--ink-faded);
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  margin-top:1px;
 }
 .entry-item .ei-folder{
   font-size:0.75rem; font-style:italic; color: var(--ink-faded);
@@ -244,11 +266,11 @@ html, body{
   border: 1px solid var(--parchment-stain); border-radius: 10px; padding: 2px 10px;
 }
 .entry-title{
-  font-family:'Caveat', cursive; font-weight:600;
+  font-family:'Merienda', cursive; font-weight:600;
   font-size: 2.4rem; margin: 6px 0 10px; color: var(--ink); line-height:1.05;
 }
 .entry-body{
-  font-family:'Caveat', cursive; font-size:1.45rem; line-height:1.5;
+  font-family:'Merienda', cursive; font-size:1.45rem; line-height:1.5;
   color: var(--ink); flex:1; overflow-y:auto; padding-right:6px;
 }
 .entry-body h3{ font-family:'IM Fell English SC', serif; font-size:1.2rem; color: var(--rust); }
@@ -271,7 +293,7 @@ html, body{
   color: var(--ink);
 }
 .edit-title{
-  font-family:'Caveat', cursive; font-size:1.6rem;
+  font-family:'Merienda', cursive; font-size:1.6rem;
 }
 .toolbar{ display:flex; flex-wrap:wrap; gap:6px; margin: 6px 0 8px; }
 .toolbar button{
@@ -286,7 +308,7 @@ html, body{
 .toolbar button:hover{ background: rgba(60,38,20,0.2); }
 .edit-body{
   flex:1; min-height: 220px;
-  font-family:'Caveat', cursive; font-size:1.45rem; line-height:1.5;
+  font-family:'Merienda', cursive; font-size:1.45rem; line-height:1.5;
   background: rgba(255,250,235,0.3);
   border: 1px solid var(--parchment-stain);
   border-radius: 3px;

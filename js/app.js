@@ -109,13 +109,17 @@ function renderEntryList(){
     list.innerHTML = `<div class="entry-list-empty">No pages found. The archive awaits its first entry.</div>`;
     return;
   }
-  list.innerHTML = state.filtered.map(e => `
+  list.innerHTML = state.filtered.map(e => {
+    const preview = plainText(e.bodyHtml || "").replace(/\s+/g, " ").trim().slice(0, 100);
+    return `
     <div class="entry-item ${e.id === state.activeId ? "active" : ""}" data-id="${e.id}">
       <div class="ei-date">${escapeHtml(formatDateDisplay(e.date))}</div>
       <div class="ei-title">${escapeHtml(e.title || "(untitled page)")}</div>
+      ${preview ? `<div class="ei-preview">${escapeHtml(preview)}</div>` : ""}
       ${e.folder ? `<div class="ei-folder">${escapeHtml(e.folder)}</div>` : ""}
     </div>
-  `).join("");
+  `;
+  }).join("");
 
   $$(".entry-item").forEach(el => {
     el.addEventListener("click", () => openEntry(el.dataset.id));
@@ -129,12 +133,22 @@ function setMode(mode){
   $("#entryEditor").classList.toggle("hidden", mode !== "edit");
 }
 
+function playPageTurnSound(){
+  const audio = $("#pageTurnSound");
+  if(!audio) return;
+  try{
+    audio.currentTime = 0;
+    audio.play().catch(() => {}); // ignore autoplay-policy rejections
+  }catch(e){}
+}
+
 function flipPage(cb){
   const rp = $("#rightPage");
   rp.classList.remove("page-flipping");
   // force reflow to restart animation
   void rp.offsetWidth;
   rp.classList.add("page-flipping");
+  playPageTurnSound();
   setTimeout(() => {
     cb && cb();
   }, 250); // swap content mid-flip
